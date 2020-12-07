@@ -22,4 +22,16 @@ struct Blog: Website {
 }
 
 // This will generate your website using the built-in Foundation theme:
-try Blog().publish(withTheme: .basic)
+try Blog().publish(using: [
+    .copyResources(),
+    .addMarkdownFiles(),
+    .sortItems(by: \.date, order: .descending),
+    .generateHTML(withTheme: .basic),
+    .unwrap(RSSFeedConfiguration.default) { config in
+        .generateRSSFeed(
+            including: [.posts],
+            config: config
+        )
+    },
+    .generateSiteMap()
+])
