@@ -19,11 +19,11 @@ extension Theme where Site == Blog {
 }
 
 private struct BasicHTMLFactory: HTMLFactory {
-    let cssFile: [Path] = ["BasicTheme/styles.css"]
+    let cssFile: [Path] = ["blog/BasicTheme/styles.css"]
     
     func makeIndexHTML(for index: Index,
                        context: PublishingContext<Blog>) throws -> HTML {
-       let a = HTML(
+        HTML(
             .lang(context.site.language),
             .head(for: index, on: context.site, stylesheetPaths: cssFile),
             .body(
@@ -46,9 +46,8 @@ private struct BasicHTMLFactory: HTMLFactory {
                 .footer(for: context.site)
             )
         )
-        return a
     }
-
+    
     func makeSectionHTML(for section: Section<Blog>,
                          context: PublishingContext<Blog>) throws -> HTML {
         HTML(
