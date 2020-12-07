@@ -194,7 +194,8 @@ private extension Node where Context == HTML.BodyContext {
             .forEach(items) { item in
                 .li(.article(
                     .h1(.a(
-                        .href(item.path),
+                        // Alt domainde olduğumuz için blog eklememiz gerekiyor. yoksa direk atalayasa/posts diye ekliyor böyle yapınca atalayasa/blog/posts yapıyor.
+                        .href("blog/\(item.path)"),
                         .text(item.title)
                     )),
                     .tagList(for: item, on: site),
