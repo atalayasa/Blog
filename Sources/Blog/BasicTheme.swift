@@ -13,13 +13,13 @@ public extension Theme {
     /// basic theme mostly implemented for demonstration purposes.
     static var basic: Self {
         Theme(
-            htmlFactory: FoundationHTMLFactory(),
+            htmlFactory: BasicHTMLFactory(),
             resourcePaths: ["Resources/BasicTheme/styles.css"]
         )
     }
 }
 
-private struct FoundationHTMLFactory<Site: Website>: HTMLFactory {
+private struct BasicHTMLFactory<Site: Website>: HTMLFactory {
     func makeIndexHTML(for index: Index,
                        context: PublishingContext<Site>) throws -> HTML {
         HTML(
