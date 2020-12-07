@@ -189,13 +189,13 @@ private extension Node where Context == HTML.BodyContext {
     }
 
     static func itemList<T: Website>(for items: [Item<T>], on site: T) -> Node {
-        return .ul(
+        .ul(
             .class("item-list"),
             .forEach(items) { item in
                 .li(.article(
                     .h1(.a(
                         // Alt domainde olduğumuz için blog eklememiz gerekiyor. yoksa direk atalayasa/posts diye ekliyor böyle yapınca atalayasa/blog/posts yapıyor.
-                        .href(item.path),
+                        .hrefCustom(item.path),
                         .text(item.title)
                     )),
                     .tagList(for: item, on: site),
@@ -228,5 +228,13 @@ private extension Node where Context == HTML.BodyContext {
                 .href("/feed.rss")
             ))
         )
+    }
+}
+
+public extension Node where Context: HTMLLinkableContext {
+    /// Assign a path to link the element to, using its `href` attribute.
+    /// - parameter path: The absolute path to assign.
+    static func hrefCustom(_ path: Path) -> Node {
+        .attribute(named: "href", value: path.string)
     }
 }
