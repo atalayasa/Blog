@@ -3,6 +3,6 @@ date: 2020-12-06 20:17
 description: A description of my first post.
 tags: first, article
 ---
-# My first post
+# Benim abim bir ayı
 
-My first post's text.
+Noooolllduuuu kral :)
